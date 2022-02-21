@@ -22,9 +22,18 @@ namespace _21_02_2022
         internal Lampadaire LeLampadaire { get => _leLampadaire; set => _leLampadaire = value; }
         internal List<Intervention> LesInterventions { get => _lesInterventions; set => _lesInterventions = value; }
 
+        public Panne(int idPanne, Lampadaire leLampadaire, bool urgent)
+        {
+            _idPanne = idPanne;
+            _leLampadaire= leLampadaire;
+            _urgent = urgent;
+        }
+
         public void AjouteInterventionUrgente() 
         {
             double distPlusCourt = double.MaxValue; 
+
+            Intervention iUrgente = new Intervention();
             foreach (Tournee tournee in Utilitaire.TourneesEnCours())
             {
                 Intervention i = tournee.InterventionEnCours();
@@ -32,11 +41,33 @@ namespace _21_02_2022
                 {
                     double distance = Utilitaire.DistanceDeuxLampadaires(_leLampadaire, i.LaPanne.LeLampadaire);
                     if(distance < distPlusCourt)
+                    {
                         distPlusCourt = distance;
+
+                    }
 
                 }
             }
             
+        }
+
+        public Intervention Get_InterventionPlusProche()
+        {
+            double distPlusCourt = double.MaxValue;
+            foreach (Tournee tournee in Utilitaire.TourneesEnCours())
+            {
+                Intervention i = tournee.InterventionEnCours();
+                if (i != null)
+                {
+                    double distance = Utilitaire.DistanceDeuxLampadaires(_leLampadaire, i.LaPanne.LeLampadaire);
+                    if (distance < distPlusCourt)
+                    {
+                        distPlusCourt = distance;
+
+                    }
+
+                }
+            }
         }
     }
 }

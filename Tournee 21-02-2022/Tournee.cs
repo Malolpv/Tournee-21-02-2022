@@ -21,7 +21,7 @@ namespace _21_02_2022
             {
                 if(intervention == interventionEnCours)
                 {
-                    res.AddRange(lesInterventions.GetRange(i, lesInterventions.Count));
+                    res.AddRange(lesInterventions.GetRange(i+1, lesInterventions.Count));
                     break;
                 }
                 i++;
