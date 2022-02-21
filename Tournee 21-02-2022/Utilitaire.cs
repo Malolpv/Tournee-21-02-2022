@@ -25,5 +25,26 @@ namespace _21_02_2022
             return Ga.GetDistanceTo(Gb);
 
         }
+
+        public static Tournee TourneePlusProche(Panne param)
+        {
+            double distPlusCourt = double.MaxValue;
+            Tournee tPlusProche = null;
+            foreach (Tournee tournee in Utilitaire.TourneesEnCours())
+            {
+                Intervention i = tournee.InterventionEnCours();
+                if (i != null)
+                {
+                    double distance = Utilitaire.DistanceDeuxLampadaires(param.LeLampadaire, i.LaPanne.LeLampadaire);
+                    if (distance < distPlusCourt)
+                    {
+                        distPlusCourt = distance;
+                        tPlusProche = tournee;
+                    }
+
+                }
+            }
+            return tPlusProche;
+        }
     }
 }

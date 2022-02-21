@@ -37,7 +37,7 @@ namespace _21_02_2022
 
         public void AjouteInterventionUrgente() 
         {
-            Tournee t = Get_TourneePlusProche();
+            Tournee t = Utilitaire.TourneePlusProche(this);
 
             if(t != null)
             {
@@ -47,25 +47,6 @@ namespace _21_02_2022
 
         }
 
-        private Tournee Get_TourneePlusProche()
-        {
-            double distPlusCourt = double.MaxValue;
-            Tournee tPlusProche = null; 
-            foreach (Tournee tournee in Utilitaire.TourneesEnCours())
-            {
-                Intervention i = tournee.InterventionEnCours();
-                if (i != null)
-                {
-                    double distance = Utilitaire.DistanceDeuxLampadaires(_leLampadaire, i.LaPanne.LeLampadaire);
-                    if (distance < distPlusCourt)
-                    {
-                        distPlusCourt = distance;
-                        tPlusProche = tournee;
-                    }
-
-                }
-            }
-            return tPlusProche;
-        }
+        
     }
 }
