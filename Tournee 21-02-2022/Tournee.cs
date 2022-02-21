@@ -31,7 +31,7 @@ namespace _21_02_2022
 
         public Intervention InterventionEnCours()
         {
-            Intervention res = new Intervention();
+            Intervention res = null;
             foreach(Intervention intervention in lesInterventions)
                 if(intervention.Statut == 'E')
                 {
@@ -39,6 +39,20 @@ namespace _21_02_2022
                     break;
                 }
             return res;
+        }
+
+        public void AffecteInterventionUrgente(Intervention param)
+        {
+            int i = 0; 
+            foreach(var intervention in lesInterventions)
+            {
+                if(intervention.Statut == 'E')
+                {
+                    lesInterventions.Insert(i + 1, param);
+                    return;
+                }
+                i++;
+            }
         }
     }
 }

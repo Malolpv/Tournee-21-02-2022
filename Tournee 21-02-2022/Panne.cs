@@ -27,33 +27,30 @@ namespace _21_02_2022
             _idPanne = idPanne;
             _leLampadaire= leLampadaire;
             _urgent = urgent;
+
+            _lesInterventions= new List<Intervention>();
+            if (_urgent)
+                AjouteInterventionUrgente();
         }
+        
+        
 
         public void AjouteInterventionUrgente() 
         {
-            double distPlusCourt = double.MaxValue; 
+            Tournee t = Get_TourneePlusProche();
 
-            Intervention iUrgente = new Intervention();
-            foreach (Tournee tournee in Utilitaire.TourneesEnCours())
+            if(t != null)
             {
-                Intervention i = tournee.InterventionEnCours();
-                if (i != null)
-                {
-                    double distance = Utilitaire.DistanceDeuxLampadaires(_leLampadaire, i.LaPanne.LeLampadaire);
-                    if(distance < distPlusCourt)
-                    {
-                        distPlusCourt = distance;
-
-                    }
-
-                }
+                Intervention i = new Intervention(1.5, "Panne Critique", this) { Statut = 'A'};
+                t.AffecteInterventionUrgente(i);
             }
-            
+
         }
 
-        public Intervention Get_InterventionPlusProche()
+        private Tournee Get_TourneePlusProche()
         {
             double distPlusCourt = double.MaxValue;
+            Tournee tPlusProche = null; 
             foreach (Tournee tournee in Utilitaire.TourneesEnCours())
             {
                 Intervention i = tournee.InterventionEnCours();
@@ -63,11 +60,12 @@ namespace _21_02_2022
                     if (distance < distPlusCourt)
                     {
                         distPlusCourt = distance;
-
+                        tPlusProche = tournee;
                     }
 
                 }
             }
+            return tPlusProche;
         }
     }
 }
