@@ -76,6 +76,7 @@ namespace _21_02_2022
             return res;
         }
 
+        //affecte une Intervention Urgente à la tournee 
         public void AffecteInterventionUrgente(Intervention param)
         {
             int i = 0; 
@@ -99,6 +100,7 @@ namespace _21_02_2022
                 return false;
         }
 
+        //ajoute une intervention
         public void AjouteIntervention(Intervention param) 
         {
             _lesInterventions.Add(param); 
