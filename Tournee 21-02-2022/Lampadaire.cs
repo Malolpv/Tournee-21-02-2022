@@ -1,6 +1,6 @@
 ﻿namespace _21_02_2022
 {
-    internal class Lampadaire
+    public class Lampadaire
     {
         private int _id;
         private string _referenceInterne;

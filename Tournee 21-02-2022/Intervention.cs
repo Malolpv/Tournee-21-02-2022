@@ -1,6 +1,6 @@
 ﻿namespace _21_02_2022
 {
-    internal class Intervention
+    public class Intervention
     {
 
         private double _dureePrevue, _dureeReelle;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _21_02_2022
 {
-    internal class Panne
+    public class Panne
     {
         private int _idPanne;
         private DateTime _dateHeurePanne;
@@ -14,6 +14,8 @@ namespace _21_02_2022
         private bool _urgent;
         private Lampadaire _leLampadaire;
         private List<Intervention> _lesInterventions;
+
+        public static List<Panne> CollPanne = new List<Panne>();
 
         public int IdPanne { get => _idPanne; set => _idPanne = value; }
         public DateTime DateHeurePanne { get => _dateHeurePanne; set => _dateHeurePanne = value; }
@@ -31,6 +33,7 @@ namespace _21_02_2022
             _lesInterventions= new List<Intervention>();
             if (_urgent)
                 AjouteInterventionUrgente();
+            CollPanne.Add(this);
         }
         
         

@@ -8,24 +8,33 @@ using System.Device.Location;
 
 namespace _21_02_2022
 {
-    internal class Utilitaire
+    public class Utilitaire
     {
-        private static List<Tournee> _tourneeEnCours = new List<Tournee>();
+        //public static List<Tournee> _tourneeEnCours = new List<Tournee>();
 
+        //retourne la liste des tournees en cours
         public static List<Tournee> TourneesEnCours()
         {
-            return _tourneeEnCours;
+            List<Tournee> res = new List<Tournee>();
+            foreach(Tournee ti in Tournee.CollTournee)
+            {
+                if(ti.EstEnCours() && ti.DateHeurePrevue.Date == DateTime.Now.Date)
+                    res.Add(ti);
+            }
+            return res;
         }
         
+        //retourne la distance arrondie au mètre entre deux lampadaires
         public static double DistanceDeuxLampadaires(Lampadaire a ,Lampadaire b)
         {
             GeoCoordinate Ga = new GeoCoordinate(a.Latitude, a.Longitude);
             GeoCoordinate Gb = new GeoCoordinate(b.Latitude, b.Longitude);
-
-            return Ga.GetDistanceTo(Gb);
+            
+            return Math.Round(Ga.GetDistanceTo(Gb));
 
         }
 
+        //retourne la tournée la plus proche de la panne en cours
         public static Tournee TourneePlusProche(Panne param)
         {
             double distPlusCourt = double.MaxValue;
@@ -45,6 +54,11 @@ namespace _21_02_2022
                 }
             }
             return tPlusProche;
+        }
+        
+        public static int NouvelIdPanne()
+        {
+            return Panne.CollPanne.Last().IdPanne + 1;
         }
     }
 }

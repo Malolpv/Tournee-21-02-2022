@@ -50,6 +50,7 @@
     <Compile Include="Panne.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Technicien.cs" />
     <Compile Include="Tournee.cs" />
     <Compile Include="TypeEmplacement.cs" />
     <Compile Include="Utilitaire.cs" />

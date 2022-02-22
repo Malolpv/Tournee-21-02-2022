@@ -3,25 +3,42 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tournee_21_02_2022;
 
 namespace _21_02_2022
 {
-    internal class Tournee
+    public class Tournee
     {
-        private List<Intervention> lesInterventions;
+        private DateTime _dateHeurePrevue;
+        private Technicien _technicien;
+        private List<Intervention> _lesInterventions;
+        
+        
+        public static List<Tournee> CollTournee = new List<Tournee>();
+        
+        
+        public DateTime DateHeurePrevue { get => _dateHeurePrevue; set => _dateHeurePrevue = value; }
+        public Technicien LeTechnicien { get => _technicien; set => _technicien = value; }
+        public List<Intervention> LesInterventions { get => _lesInterventions; set => _lesInterventions = value; }
 
-
+        public Tournee(DateTime dateHeurePrevue,Technicien leTechnicien)
+        {
+            _dateHeurePrevue = dateHeurePrevue;
+            _technicien = leTechnicien;
+            _lesInterventions = new List<Intervention>();
+            CollTournee.Add(this);
+        }
 
         public List<Intervention> InterventionsRestantes()
         {
             List<Intervention> res = new List<Intervention>();
             
             int i = 0;
-            foreach(Intervention intervention in lesInterventions)
+            foreach(Intervention intervention in _lesInterventions)
             {
                 if(intervention.Statut == 'E')
                 {
-                    res.AddRange(lesInterventions.GetRange(i+1, lesInterventions.Count-1));
+                    res.AddRange(_lesInterventions.GetRange(i+1, _lesInterventions.Count-1));
                     break;
                 }
                 i++;
@@ -32,7 +49,7 @@ namespace _21_02_2022
         public Intervention InterventionEnCours()
         {
             Intervention res = null;
-            foreach(Intervention intervention in lesInterventions)
+            foreach(Intervention intervention in _lesInterventions)
                 if(intervention.Statut == 'E')
                 {
                     res = intervention;
@@ -44,15 +61,30 @@ namespace _21_02_2022
         public void AffecteInterventionUrgente(Intervention param)
         {
             int i = 0; 
-            foreach(var intervention in lesInterventions)
+            foreach(var intervention in _lesInterventions)
             {
                 if(intervention.Statut == 'E')
                 {
-                    lesInterventions.Insert(i + 1, param);
+                    _lesInterventions.Insert(i + 1, param);
                     return;
                 }
                 i++;
             }
         }
+
+        //verifie si la tournee est en cours
+        public bool EstEnCours()
+        {
+            if(InterventionEnCours() != null)
+                return true;
+            else
+                return false;
+        }
+
+        public void AjouteIntervention(Intervention param) 
+        {
+            _lesInterventions.Add(param); 
+        }
+        
     }
 }
