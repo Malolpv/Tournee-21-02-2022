@@ -46,6 +46,24 @@ namespace _21_02_2022
             return res;
         }
 
+        public List<Intervention> InterventionsRestantesOLD()
+        {
+            List<Intervention> res = new List<Intervention>();
+            Intervention iEnCours = InterventionEnCours();
+            int i = 0;
+            foreach (Intervention intervention in _lesInterventions)
+            {
+                if (intervention == iEnCours)
+                {
+                    res.AddRange(_lesInterventions.GetRange(i + 1, _lesInterventions.Count - 1));
+                    break;
+                }
+                i++;
+            }
+            return res;
+        }
+
+
         public Intervention InterventionEnCours()
         {
             Intervention res = null;
