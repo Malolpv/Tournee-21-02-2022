@@ -27,12 +27,18 @@ namespace _21_02_2022
         public Panne(int idPanne, Lampadaire leLampadaire, bool urgent)
         {
             _idPanne = Utilitaire.NouvelIdPanne();
+            _dateHeurePanne = DateTime.Now;
             _leLampadaire= leLampadaire;
             _urgent = urgent;
-            _statut = 'E';
+            
             _lesInterventions= new List<Intervention>();
             if (_urgent)
+            {
+                _statut = 'C';
                 AjouteInterventionUrgente();
+            }
+            else { _statut = 'E'; }
+                
             CollPanne.Add(this);
         }
         

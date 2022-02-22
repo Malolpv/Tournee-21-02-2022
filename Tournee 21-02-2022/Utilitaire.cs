@@ -54,7 +54,7 @@ namespace _21_02_2022
         
         public static int NouvelIdPanne()
         {
-            return Panne.CollPanne.Last().IdPanne + 1;
+            return Panne.CollPanne.Last().IdPanne ++;
         }
     }
 }
