@@ -44,8 +44,7 @@ namespace _21_02_2022
 
             if(t != null)
             {
-                Intervention i = new Intervention(1.5, "Panne Critique", this) { Statut = 'A'};
-                t.AffecteInterventionUrgente(i);
+                t.AffecteInterventionUrgente(new Intervention(1.5, "Panne Critique", this) { Statut = 'A' };);
             }
 
         }
