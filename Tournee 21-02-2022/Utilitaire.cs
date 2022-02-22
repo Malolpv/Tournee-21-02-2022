@@ -27,11 +27,7 @@ namespace _21_02_2022
         //retourne la distance arrondie au mètre entre deux lampadaires
         public static double DistanceDeuxLampadaires(Lampadaire a ,Lampadaire b)
         {
-            GeoCoordinate Ga = new GeoCoordinate(a.Latitude, a.Longitude);
-            GeoCoordinate Gb = new GeoCoordinate(b.Latitude, b.Longitude);
-            
-            return Math.Round(Ga.GetDistanceTo(Gb));
-
+            return Math.Round(new GeoCoordinate(a.Latitude, a.Longitude).GetDistanceTo(new GeoCoordinate(b.Latitude, b.Longitude)));
         }
 
         //retourne la tournée la plus proche de la panne en cours
