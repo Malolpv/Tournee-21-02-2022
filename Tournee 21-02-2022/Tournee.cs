@@ -15,7 +15,7 @@ namespace _21_02_2022
         public List<Intervention> InterventionsRestantes()
         {
             List<Intervention> res = new List<Intervention>();
-
+            
             int i = 0;
             foreach(Intervention intervention in lesInterventions)
             {

@@ -27,7 +27,7 @@ namespace _21_02_2022
             _idPanne = idPanne;
             _leLampadaire= leLampadaire;
             _urgent = urgent;
-
+            _statut = 'E';
             _lesInterventions= new List<Intervention>();
             if (_urgent)
                 AjouteInterventionUrgente();
