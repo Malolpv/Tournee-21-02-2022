@@ -79,16 +79,9 @@ namespace _21_02_2022
         //affecte une Intervention Urgente à la tournee 
         public void AffecteInterventionUrgente(Intervention param)
         {
-            int i = 0; 
-            foreach(var intervention in _lesInterventions)
-            {
-                if(intervention.Statut == 'E')
-                {
-                    _lesInterventions.Insert(i + 1, param);
-                    return;
-                }
-                i++;
-            }
+            int i = _lesInterventions.FindIndex(x => x.Statut == 'E');
+            if (i != -1)
+                _lesInterventions.Insert(i+1, param);
         }
 
         //verifie si la tournee est en cours
