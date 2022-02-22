@@ -57,7 +57,7 @@ namespace _21_02_2022.Tests
             attendu.Add(t2);
 
             List<Tournee> res = Utilitaire.TourneesEnCours();
-            Assert.AreEqual(attendu,res);
+            CollectionAssert.AreEqual(attendu,res);
         }
     }
 }
