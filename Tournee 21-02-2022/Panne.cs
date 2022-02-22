@@ -26,7 +26,7 @@ namespace _21_02_2022
 
         public Panne(int idPanne, Lampadaire leLampadaire, bool urgent)
         {
-            _idPanne = idPanne;
+            _idPanne = Utilitaire.NouvelIdPanne();
             _leLampadaire= leLampadaire;
             _urgent = urgent;
             _statut = 'E';
